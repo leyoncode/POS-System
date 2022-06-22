@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+  <tabs>
+    <Tab text="POS">
+         <content>
+            <HBox alignment="CENTER" prefHeight="370.0" prefWidth="638.0">
+               <children>
+                  <VBox prefHeight="439.0" prefWidth="371.0">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="318.0" text="Select products to sell">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Products in stock">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <ListView fx:id="productsInStock" onMouseClicked="#setPOSStockSelectedIndex" prefHeight="221.0" prefWidth="300.0" />
+                        <Label prefHeight="18.0" prefWidth="331.0" text="No. of items to sell">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="noOfItemsToSell" promptText="number of items of selected product" />
+                        <Button mnemonicParsing="false" onAction="#addToCart" text="Add to Cart">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="439.0" prefWidth="339.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="257.0" text="Products in cart:">
+                           <VBox.margin>
+                              <Insets top="29.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ListView fx:id="productsInCart" prefHeight="223.0" prefWidth="313.0" />
+                        <Button mnemonicParsing="false" onAction="#removeFromCart" text="Remove From cart">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="140.0" text="Total Price">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="priceLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="261.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#checkout" text="Checkout">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </content>
+    </Tab>
+    <Tab text="Stock">
+      <content>
+            <HBox alignment="CENTER" prefHeight="370.0" prefWidth="638.0">
+               <children>
+                  <VBox prefHeight="439.0" prefWidth="371.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="336.0" text="Products in Stock" />
+                        <ListView fx:id="productsInStock1" onMouseClicked="#populateDataForProduct" prefHeight="113.0" prefWidth="344.0" />
+                        <Label text="Product Name">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="productName" />
+                        <Label text="Product Description">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="productDescription" prefHeight="117.0" prefWidth="344.0" />
+                        <Label text="No. of items in stock">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="noOfItemsInStock" promptText="0" />
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Cost:" />
+                              <TextField fx:id="productCost" promptText="0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Price:" />
+                              <TextField fx:id="productPrice" promptText="0">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#updateChangesToStorage" text="Save Changes">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin></Button>
+                              <Button mnemonicParsing="false" onAction="#deleteProduct" text="Delete From Stock">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="439.0" prefWidth="339.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="312.0" text="Add Item to Stock">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Product Name:" />
+                        <TextField fx:id="newProductName" promptText="product name" />
+                        <Label text="Product Description:">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="newProductDescription" prefHeight="118.0" prefWidth="313.0" promptText="product short description" />
+                        <Label prefHeight="18.0" prefWidth="305.0" text="No. of items to add in stock:">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="noOfNewItemsToAddToStock" promptText="1" />
+                        <Label prefHeight="18.0" prefWidth="310.0" text="Cost of single product:">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="newProductCost" promptText="amount you spent to buy product" />
+                        <Label prefHeight="18.0" prefWidth="307.0" text="Price of single product:">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="newProductPrice" promptText="amount you will sell product for" />
+                        <Button mnemonicParsing="false" onAction="#addToStock" text="Add to Stock">
+                           <VBox.margin>
+                              <Insets left="115.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </content>
+    </Tab>
+      <Tab text="Sales report">
+         <content>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="All sales reports">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TableView fx:id="allReports" prefHeight="442.0" prefWidth="707.0">
+                                 <columns>
+                                    <TableColumn fx:id="allReportsNameCol" prefWidth="178.4000244140625" text="Product Name" />
+                                    <TableColumn fx:id="allReportsItemSoldCol" prefWidth="175.20001220703125" text="Items Sold" />
+                                    <TableColumn fx:id="allReportsProfitCol" prefWidth="173.5999755859375" text="Profit" />
+                                    <TableColumn fx:id="allReportsDateCol" prefWidth="293.5999755859375" text="Date" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                <Tab text="Earnings this year">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <BarChart fx:id="yearEarningBarChart">
+                                <xAxis>
+                                  <CategoryAxis label="Year" side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis label="Profit" side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
+                     </content>
+                </Tab>
+                <Tab text="Earnings this month">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <BarChart fx:id="monthEarningBarChart">
+                                <xAxis>
+                                  <CategoryAxis label="Days of this month" side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis label="Profit" side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
+                     </content>
+                </Tab>
+                  <Tab text="Earnings in Previous Years">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <BarChart fx:id="prevYearsEarningBarChart">
+                                <xAxis>
+                                  <CategoryAxis label="Year" side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis label="Profit" side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

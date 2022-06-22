@@ -1,0 +1,6 @@
+This project was created in sclipse ide and that is the preferred ide -mostly because it's free.
+
+To run this project you need OpenJDK8 with JavaFX provided inside it.
+Some newer versions of java don't include JavaFX in them as Oracle separated JavaFX from the main Java SDK.
+
+We used Amazon Coretto 8. This is a free OpenJDK distribution and includes JavaFX in it. It's newer version does not include JavaFX, so stick with Java8 for this project for simplicity.
